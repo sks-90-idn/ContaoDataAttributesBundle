@@ -34,7 +34,7 @@ class DataAttributesContentElement {
         if (sizeof($dataAttributes)>0) {
 
             foreach ($dataAttributes as $index=>$dataAttribute) {
-                $parsedDataAttributes[] = 'data-' . str_replace('data-', '', $dataAttribute['key']) . '="' . $dataAttribute['value'] . '"';
+                $parsedDataAttributes[] = '' . str_replace('data-', '', $dataAttribute['key']) . '="' . $dataAttribute['value'] . '"';
             }
             $dataAttributesString = implode(' ' , $parsedDataAttributes);
         }
