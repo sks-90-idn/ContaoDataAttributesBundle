@@ -7,21 +7,18 @@
  *
  */
 
+use Contao\CoreBundle\DataContainer\PaletteManipulator;
 
-foreach ($GLOBALS['TL_DCA']['tl_article']['palettes'] as $k => $palette)
-{
+PaletteManipulator::create()
+    ->addLegend('Data-Attribut-Einstellungen', 'date_legend', PaletteManipulator::POSITION_BEFORE)
+    ->addField('joDataAttributes', 'Attributes', PaletteManipulator::POSITION_APPEND)
+    ->applyToPalette('default', 'tl_article') 
+;
 
-    if (!is_array($palette) && strpos($palette, "cssID") !== false)
-    {
-        $GLOBALS['TL_DCA']['tl_article']['palettes'][$k] = str_replace
-        (
-            '{invisible_legend',
-            '{jo_data-attributes_legend},joDataAttributes,joDataAttributesDisableAutomatic;{invisible_legend',
-            $GLOBALS['TL_DCA']['tl_article']['palettes'][$k]
-        );
-    }
-
-}
+PaletteManipulator::create()
+    ->addField('joDataAttributesDisableAutomatic', 'Disable Attributes')
+    ->applyToPalette('default', 'tl_article') 
+;
 
 $GLOBALS['TL_DCA']['tl_article']['fields']['joDataAttributes'] = [
     'label'                   => &$GLOBALS['TL_LANG']['tl_article']['joDataAttributes'],
